@@ -70,6 +70,7 @@ bool cMotion::Load(const tParams& params)
 	bool succ = reader.parse(f_stream, root);
 	f_stream.close();
 
+  printf("Motion parsing succ: %d\n", succ);
 	if (succ)
 	{
 		succ = LoadJson(root);
@@ -89,7 +90,8 @@ bool cMotion::Load(const tParams& params)
 		printf("Failed to parse Json from %s\n", mParams.mMotionFile.c_str());
 		assert(false);
 	}
-	return succ;
+  printf("[Motion] Parsing File is done\n");
+  return succ;
 }
 
 void cMotion::Init(int num_frames, int num_dofs)

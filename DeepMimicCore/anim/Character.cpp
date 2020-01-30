@@ -7,6 +7,8 @@
 #include "render/MeshUtil.h"
 #include "render/DrawUtil.h"
 
+#include <iostream>
+
 // Json keys
 const std::string cCharacter::gSkeletonKey = "Skeleton";
 const std::string gPoseKey = "Pose";
@@ -43,8 +45,9 @@ bool cCharacter::Init(const std::string& char_file, bool load_draw_shapes)
 		std::ifstream f_stream(char_file);
 		Json::Reader reader;
 		Json::Value root;
-		succ = reader.parse(f_stream, root);
+		succ = reader.parse(f_stream, root, true);
 		f_stream.close();
+    std::cout<<"cCharacter parsing success: "<<succ<<std::endl;
 
 		if (succ)
 		{

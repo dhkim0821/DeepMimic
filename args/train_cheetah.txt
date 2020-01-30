@@ -15,13 +15,13 @@
 --terrain_file data/terrain/plane.txt
 
 --char_types general
---character_files data/characters/dog3d.txt
+--character_files data/characters/cheetah.txt
 --enable_char_soft_contact false
---fall_contact_bodies 0 1 2 3 4 5 6 7 9 10 11 13 14 15 17 18 19 21 22
+--fall_contact_bodies 0 1 2 4 5 7 8 10 11
 
 --char_ctrls ct_pd
---char_ctrl_files data/controllers/dog3d_ctrl.txt
---motion_file data/motions/dog3d_trot.txt
+--char_ctrl_files data/controllers/cheetah_ctrl.txt
+--motion_file data/motions/cheetah_trot.txt
 --sync_char_root_pos true
 --sync_char_root_rot false
 

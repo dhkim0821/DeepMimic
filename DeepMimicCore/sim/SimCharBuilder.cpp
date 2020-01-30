@@ -24,6 +24,7 @@ void cSimCharBuilder::CreateCharacter(eCharType char_type, std::shared_ptr<cSimC
 
 void cSimCharBuilder::ParseCharType(const std::string& char_type_str, eCharType& out_char_type)
 {
+  printf("in parse\n");
 	bool found = false;
 	if (char_type_str == "")
 	{

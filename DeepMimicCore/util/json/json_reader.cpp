@@ -119,6 +119,7 @@ bool Reader::parse(std::istream& sin, Value& root, bool collectComments) {
   // Since JSONCPP_STRING is reference-counted, this at least does not
   // create an extra copy.
   JSONCPP_STRING doc;
+  printf("reader istream\n");
   std::getline(sin, doc, (char)EOF);
   return parse(doc.data(), doc.data() + doc.size(), root, collectComments);
 }
@@ -127,6 +128,8 @@ bool Reader::parse(const char* beginDoc,
                    const char* endDoc,
                    Value& root,
                    bool collectComments) {
+  printf("reader parse char*\n");
+
   if (!features_.allowComments_) {
     collectComments = false;
   }
@@ -143,7 +146,9 @@ bool Reader::parse(const char* beginDoc,
     nodes_.pop();
   nodes_.push(&root);
 
+  printf("before readvalue\n");
   bool successful = readValue();
+  printf("after readvalue success? %d\n", successful);
   Token token;
   skipCommentTokens(token);
   if (collectComments_ && !commentsBefore_.empty())
@@ -185,13 +190,16 @@ bool Reader::readValue() {
     currentValue().setOffsetLimit(current_ - begin_);
     break;
   case tokenArrayBegin:
+    //printf("read Array\n");
     successful = readArray(token);
     currentValue().setOffsetLimit(current_ - begin_);
     break;
   case tokenNumber:
+    //printf("read Number\n");
     successful = decodeNumber(token);
     break;
   case tokenString:
+    //printf("read String\n");
     successful = decodeString(token);
     break;
   case tokenTrue:
@@ -1046,6 +1054,7 @@ bool OurReader::parse(const char* beginDoc,
                    const char* endDoc,
                    Value& root,
                    bool collectComments) {
+  printf("ourreader parse char\n");
   if (!features_.allowComments_) {
     collectComments = false;
   }

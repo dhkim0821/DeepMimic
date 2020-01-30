@@ -460,10 +460,12 @@ bool cSceneSimChar::BuildController(const cCtrlBuilder::tCtrlParams& ctrl_params
 void cSceneSimChar::SetFallContacts(const std::vector<int>& fall_bodies, cSimCharacter& out_char) const
 {
 	int num_fall_bodies = static_cast<int>(fall_bodies.size());
+  printf("Num Fall Bodies: %d\n", num_fall_bodies);
 	if (num_fall_bodies > 0)
 	{
 		for (int i = 0; i < out_char.GetNumBodyParts(); ++i)
 		{
+      printf("[cSceneSimChar] out character fall body idx: %d\n", i);
 			out_char.SetBodyPartFallContact(i, false);
 		}
 

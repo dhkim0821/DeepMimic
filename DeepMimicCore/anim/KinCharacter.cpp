@@ -95,6 +95,7 @@ bool cKinCharacter::LoadMotion(const std::string& motion_file)
 	motion_params.mPostProcessFunc = std::bind(&cKinCharacter::PostProcessFrame, this, std::placeholders::_1);
 	bool succ = mMotion.Load(motion_params);
 
+  printf("1\n");
 	if (succ)
 	{
 		int char_dof = GetNumDof();
@@ -105,7 +106,9 @@ bool cKinCharacter::LoadMotion(const std::string& motion_file)
 			printf("DOF mismatch, char dof: %i, motion dof: %i\n", char_dof, motion_dof);
 			mMotion.Clear();
 			succ = false;
-		}
+		}else{
+			printf("DOF matched, char dof: %i, motion dof: %i\n", char_dof, motion_dof);
+    }
 	}
 
 	if (succ)
@@ -317,6 +320,7 @@ void cKinCharacter::CalcPose(double time, Eigen::VectorXd& out_pose) const
 
 	if (HasMotion())
 	{
+    //printf("[calcPose] time %f\n", time);
 		mMotion.CalcFrame(time, out_pose);
 		if (mMotion.EnableLoop())
 		{
